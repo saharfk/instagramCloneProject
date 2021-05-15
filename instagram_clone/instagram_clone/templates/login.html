@@ -1,9 +1,16 @@
-{% extends 'base.html' %}
 {% load static %}
+<!DOCTYPE html>
+<html>
 
-        
-{% block content %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
 
+<body>
 <div class="row center-align">
     <form method="post" action="" role="form" class="col s12">
     {% csrf_token %}
@@ -32,5 +39,6 @@
       <button class="btn waves-effect waves-light"><i class="material-icons left">account_circle</i>Create an account</button>
     </form>
   </div>
+</body>
 
-{% endblock %}
+</html>

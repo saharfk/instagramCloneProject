@@ -1,6 +1,4 @@
 {% load static %}
-
-<!DOCTYPE html>
 <html>
 
 <head>
@@ -27,7 +25,7 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-end">
-            <a class="navbar-item">
+            <a href="{% url 'index' %}" class="navbar-item">
                 <i class="material-icons">home</i>
             </a>
 
@@ -64,7 +62,7 @@
                         Report an issue
                     </a>
                     <hr class="navbar-divider">
-                    <a class="navbar-item">
+                    <a href="{% url 'logout' %}" class="navbar-item">
                         Log out
                     </a>
                 </div>
@@ -74,6 +72,9 @@
 
     </div>
 </nav>
+{% block banner %}
+{% endblock %}
+
 <section class="section">
     <div class="container">
         {% block content %}

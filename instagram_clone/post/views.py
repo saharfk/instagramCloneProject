@@ -83,3 +83,16 @@ def PostDetails(request, post_id):
         'post': post,
     }
     return HttpResponse(template.render(context, request))
+
+
+@login_required
+def tags(requst, tag_slug):
+    tag = get_object_or_404(Tag, slug=tag_slug)
+    posts = Post.objects.filter(tags=tag).order_by('-posted')
+    template = loader.get_template('tag.html')
+    context = {
+        'posts': posts,
+        'tag': tag,
+    }
+
+    return HttpResponse(template.render(context, requst))

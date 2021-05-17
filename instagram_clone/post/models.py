@@ -34,12 +34,6 @@ class Tag(models.Model):
         return super().save(*args, **kwargs)
 
 
-#
-# class PostFileContent(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='content_owner')
-#     file = models.FileField(upload_to=user_directory_path)
-
-
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     picture = models.ImageField(upload_to=user_directory_path, verbose_name='Picture', null=False)
@@ -52,28 +46,10 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('postdetails', args=[str(self.id)])
 
-    # def __str__(self):
-    #     return str(self.id)
-
 
 class Follow(models.Model):
     follower = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='follower')
     following = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='following')
-
-    # def user_follow(sender, instance, *args, **kwargs):
-    #     follow = instance
-    #     sender = follow.follower
-    #     following = follow.following
-    #     notify = Notification(sender=sender, user=following, notification_type=3)
-    #     notify.save()
-    #
-    # def user_unfollow(sender, instance, *args, **kwargs):
-    #     follow = instance
-    #     sender = follow.follower
-    #     following = follow.following
-    #
-    #     notify = Notification.objects.filter(sender=sender, user=following, notification_type=3)
-    #     notify.delete()
 
 
 class Stream(models.Model):
@@ -91,33 +67,5 @@ class Stream(models.Model):
             stream.save()
 
 
-# class Likes(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_like')
-#     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_like')
-#
-#     def user_liked_post(sender, instance, *args, **kwargs):
-#         like = instance
-#         post = like.post
-#         sender = like.user
-#         notify = Notification(post=post, sender=sender, user=post.user, notification_type=1)
-#         notify.save()
-#
-#     def user_unlike_post(sender, instance, *args, **kwargs):
-#         like = instance
-#         post = like.post
-#         sender = like.user
-#
-#         notify = Notification.objects.filter(post=post, sender=sender, notification_type=1)
-#         notify.delete()
-
-
 # Stream
 post_save.connect(Stream.add_post, sender=Post)
-
-# # Likes
-# post_save.connect(Likes.user_liked_post, sender=Likes)
-# post_delete.connect(Likes.user_unlike_post, sender=Likes)
-#
-# # Follow
-# post_save.connect(Follow.user_follow, sender=Follow)
-# post_delete.connect(Follow.user_unfollow, sender=Follow)

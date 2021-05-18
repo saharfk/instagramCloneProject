@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 
-
 {% load static %}
 
 {% block content %}
 <article class="media">
     <div class="media-left">
         <figure class="image is-256x256">
-            <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png" alt="">
+            {% if profile.picture %}
+            <img class="is-rounded" src="{{ profile.picture.url }}">
+            {% else %}
+            <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png">
+            {% endif %}
         </figure>
     </div>
 
@@ -17,7 +20,15 @@
                 {% endif %}
             </h1>
             <h2 class="subtitle  is-3">@{{ profile.user }}</h2>
-            <a class="button is-info">follow</a>
+            {% if user.is_authenticated and user != profile.user %}
+            <div>
+                {% if follow_status == True %}
+                <a href="{% url 'follow' profile.user 0 %}" class="button is-danger">UnFollow</a>
+                {% else %}
+                <a href="{% url 'follow' profile.user 1 %}" class="button is-info">Follow</a>
+                {% endif %}
+            </div>
+            {% endif %}
         </div>
 
 
@@ -45,12 +56,11 @@
         <p>{% if profile.profile_info %}{{ profile.profile_info }}{% endif %}</p>
 
         {% if user.is_authenticated and user == profile.user %}
-        <a class="button">edit profile</a>
+        <a href="{% url 'edit-profile' %}" class="button">edit profile</a>
         {% endif %}
     </div>
 </article>
-</div>
-</section>
+
 <section class="section">
     <div class="container">
         <div class="tabs is-centered">

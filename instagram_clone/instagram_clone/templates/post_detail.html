@@ -17,8 +17,11 @@
                 <div class="media">
                     <div class="media-left">
                         <figure class="image is-48x48">
-                            <img src="{{ post.picture.url }}"
-                                 alt="Placeholder image">
+                            {% if post.user.profile.picture %}
+                            <img src="{{ post.user.profile.picture.url }}" alt="Placeholder image">
+                            {% else %}
+                            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                            {% endif %}
                         </figure>
                     </div>
                     <div class="media-content">
@@ -27,7 +30,8 @@
                     </div>
                     <div class="media-right">
                         <a href="{% url 'postlike' post.id %}">
-                            <i class="material-icons  has-text-danger">favorite</i><p>{{ post.likes }} Likes</p>
+                            <i class="material-icons  has-text-danger">favorite</i>
+                            <p>{{ post.likes }} Likes</p>
                         </a>
                     </div>
                     {% if favorited is True %}

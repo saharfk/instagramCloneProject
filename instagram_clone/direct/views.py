@@ -4,6 +4,8 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from direct.models import Message
+from django.core.paginator import Paginator
+from django.db.models import Q
 
 
 # Create your views here.
@@ -68,3 +70,38 @@ def SendDirect(request):
         return redirect('inbox')
     else:
         HttpResponseBadRequest()
+
+
+@login_required
+def UserSearch(request):
+    query = request.GET.get("q")
+    context = {}
+
+    if query:
+        users = User.objects.filter(Q(username__icontains=query))
+
+        # Pagination
+        paginator = Paginator(users, 6)
+        page_number = request.GET.get('page')
+        users_paginator = paginator.get_page(page_number)
+
+        context = {
+            'users': users_paginator,
+        }
+
+    template = loader.get_template('direct/search_user.html')
+
+    return HttpResponse(template.render(context, request))
+
+
+@login_required
+def NewConversation(request, username):
+    from_user = request.user
+    body = ''
+    try:
+        to_user = User.objects.get(username=username)
+    except Exception as e:
+        return redirect('usersearch')
+    if from_user != to_user:
+        Message.send_message(from_user, to_user, body)
+    return redirect('inbox')

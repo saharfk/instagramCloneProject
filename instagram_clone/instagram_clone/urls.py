@@ -23,6 +23,7 @@ urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('post/', include('post.urls')),
                   path('user/', include('authy.urls')),
+                  path('direct/', include('direct.urls')),
                   path('<username>/', UserProfile, name='profile'),
                   path('<username>/saved', UserProfile, name='profilefavorites'),
                   path('<username>/follow/<option>', follow, name='follow'),

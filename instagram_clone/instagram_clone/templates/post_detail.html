@@ -25,8 +25,15 @@
                         </figure>
                     </div>
                     <div class="media-content">
-                        <p class="title is-4">John Smith</p>
-                        <p class="subtitle is-6">@{{ post.user.username }}</p>
+                        {% if post.user.profile.first_name %}
+                        <a href="{% url 'profile' post.user %}"><p class="title is-4">
+                            {{post.user.profile.first_name }}
+                            {{ post.user.profile.last_name }}</p></a>
+                        {% else %}
+                        <a href="{% url 'profile' post.user %}"><p class="title is-4">?</p></a>
+                        {% endif %}
+                        <a href="{% url 'profile' post.user %}"><p class="subtitle is-6">
+                            @{{ post.user.username }}</p></a>
                     </div>
                     <div class="media-right">
                         <a href="{% url 'postlike' post.id %}">
@@ -56,7 +63,7 @@
                     {{ post.caption }}
                     <p>{% for tag in post.tags.all %}<a href="{{ tag.get_absolute_url }}">#{{ tag }}</a>{% endfor %}</p>
                     <br>
-                    <time datetime="2016-1-1">{{ post.posted }}</time>
+                    <time>{{ post.posted }}</time>
                 </div>
 
             </div>

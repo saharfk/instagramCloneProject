@@ -35,7 +35,8 @@
                         {% else %}
                         <a href="{% url 'profile' post_item.user %}"><p class="title is-4">?</p></a>
                         {% endif %}
-                        <p class="subtitle is-6">@{{ post_item.user.username }}</p>
+                        <a href="{% url 'profile' post_item.user %}"><p class="subtitle is-6">
+                            @{{ post_item.user.username }}</p></a>
                     </div>
                     <div class="media-right">
                         <a href="{% url 'postlike' post_item.id %}">

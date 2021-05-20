@@ -29,13 +29,17 @@
                 <i class="material-icons">home</i>
             </a>
 
-            <a class="navbar-item">
+            <a href="{% url 'index' %}" class="navbar-item">
                 <i class="material-icons">explore</i>
             </a>
-            <a class="navbar-item">
+            <a href="{% url 'show-notifications' %}" class="navbar-item">
                 <i class="material-icons">notifications</i>
+                {% if count_notifications %}
+                <span class="badge">{{ count_notifications }}</span>
+                {% endif %}
             </a>
-            <a href="{% url 'usersearch' %}" class="navbar-item">
+            <!--usersearch-->
+            <a href="{% url 'inbox' %}" class="navbar-item">
                 <i class="material-icons">inbox</i>
                 {% if directs_count %}
                 <span class="badge">{{ directs_count }}</span>

@@ -36,7 +36,11 @@
 
                                     </p>
                                 </div>
-
+                                <div class="content">
+                                    {% if message.unread %}
+                                    <p style="font-weight: bold;"><i class="material-icons">mark_chat_unread</i>4</p>
+                                    {% endif %}
+                                </div>
                             </div>
                         </article>
                     </div>

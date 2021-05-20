@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from authy.forms import SignupForm, ChangePasswordForm, EditProfileForm
 from django.contrib.auth.models import User
-
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from post.models import Post, Follow, Stream
@@ -61,7 +60,7 @@ def Signup(request):
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
             User.objects.create_user(username=username, email=email, password=password)
-            return redirect('index')
+            return redirect('../login')
     else:
         form = SignupForm()
 
@@ -128,19 +127,19 @@ def follow(request, username, option):
     following = get_object_or_404(User, username=username)
 
     try:
-        f, created = Follow.objects.get_or_create(follower=user, follwing=following)
+        f, created = Follow.objects.get_or_create(follower=request.user, following=following)
 
         if int(option) == 0:
             f.delete()
-            Stream.objects.filter(following=following, user=user).all().delete()
+            Stream.objects.filter(following=following, user=request.user).all().delete()
         else:
-            posts = Post.objects.all().filter(user=following)[:10]
+            posts = Post.objects.all().filter(user=following)[:25]
 
             with transaction.atomic():
                 for post in posts:
-                    stream = Stream(post=post, user=user, date=post.posted, following=following)
+                    stream = Stream(post=post, user=request.user, date=post.posted, following=following)
                     stream.save()
-        return HttpResponseRedirect(reverse('profile', args=[username]))
 
+        return HttpResponseRedirect(reverse('profile', args=[username]))
     except User.DoesNotExist:
-        return HttpResponseRedirect(reverse('profile'), arg=[username])
+        return HttpResponseRedirect(reverse('profile', args=[username]))

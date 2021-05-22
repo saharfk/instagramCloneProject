@@ -2,7 +2,7 @@
 
 
 {% load static %}
-
+{% load humanize %}
 {% block content %}
 <div class="columns is-mobile is-centered">
     <div class="column is-four-fifths">
@@ -43,7 +43,7 @@
                     <p>{% for tag in post_item.tags.all %}<a href="{{ tag.get_absolute_url }}">#{{ tag }}</a>
                         {% endfor %}</p>
                     <br>
-                    <time>{{ post_item.posted }}</time>
+                    <time>{{ post_item.posted|naturaltime }}</time>
                 </div>
 
             </div>

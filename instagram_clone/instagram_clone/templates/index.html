@@ -17,25 +17,26 @@
                 </figure>
             </div>
             <div class="card-content">
+
                 <div class="media">
-                    <div class="media-content">
-                        {% if post_item.user.profile.first_name %}
-                        <a href="{% url 'profile' post_item.user %}"><p class="title is-4">
-                            {{post_item.user.profile.first_name }}
-                            {{ post_item.user.profile.last_name }}</p></a>
-                        {% else %}
-                        <a href="{% url 'profile' post_item.user %}"><p class="title is-4">?</p></a>
-                        {% endif %}
-                        <a href="{% url 'profile' post_item.user %}"><p class="subtitle is-6">
-                            @{{ post_item.user.username }}</p></a>
-                    </div>
                     <div class="media-right">
                         <a href="{% url 'postlike' post_item.id %}">
-                            <i class="material-icons has-text-danger">favorites</i>
-                            <p>{{ post_item.likes}} Likes</p>
+                            <i class="material-icons  has-text-danger">favorite</i>
                         </a>
                     </div>
+                    <div class="media-right">
+                        <a  href="{{ post_item.get_absolute_url }}">
+                            <i class="material-icons  ">mode_comment</i>
+                        </a>
+                    </div>
+
+
                 </div>
+                <div class="media-content">
+                        <strong><p>{{ post_item.likes }} Likes</p></strong> </br>
+                        <a href="{% url 'profile' post_item.user %}"><p class="subtitle is-6">
+                            <b>{{ post_item.user.username }}</b></p></a>
+                    </div>
 
                 <div class="content">
                     {{ post_item.caption }}

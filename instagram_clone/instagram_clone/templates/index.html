@@ -21,26 +21,26 @@
                 <div class="media">
                     <div class="">
                         <a href="{% url 'postlike' post_item.id %}">
-                            <i class="material-icons  has-text-danger">favorite</i>
+                            <i class="material-icons  has-text-danger" style="font-size: 35px;">favorite</i>
                         </a>
                     </div>
                     <div class="media-right">
                         <a href="{{ post_item.get_absolute_url }}">
-                            <i class="material-icons  ">mode_comment</i>
+                            <i class="material-icons  " style="font-size: 35px;">mode_comment</i>
                         </a>
                     </div>
                     {% if favorited is True %}
 
                     <div class="media-right">
                         <a href="{% url 'postfavorite' post_item.id %}">
-                            <i class="material-icons ">turned_in</i>
+                            <i class="material-icons " style="color:black; font-size: 35px;">turned_in</i>
 
                         </a>
                     </div>
                     {% else %}
                     <div class="media-right">
                         <a href="{% url 'postfavorite' post_item.id %}">
-                            <i class="material-icons">turned_in_not</i>
+                            <i class="material-icons" style="color:black; font-size: 35px;">turned_in_not</i>
 
                         </a>
                     </div>
@@ -58,7 +58,7 @@
                     <p>{% for tag in post_item.tags.all %}<a href="{{ tag.get_absolute_url }}">#{{ tag }}</a>
                         {% endfor %}</p>
                     <br>
-                    <time>{{ post_item.posted|naturaltime }}</time>
+                    <time class="has-text-grey">{{ post_item.posted|naturaltime }}</time>
                 </div>
 
             </div>

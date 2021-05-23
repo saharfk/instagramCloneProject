@@ -19,24 +19,39 @@
             <div class="card-content">
 
                 <div class="media">
-                    <div class="media-right">
+                    <div class="">
                         <a href="{% url 'postlike' post_item.id %}">
                             <i class="material-icons  has-text-danger">favorite</i>
                         </a>
                     </div>
                     <div class="media-right">
-                        <a  href="{{ post_item.get_absolute_url }}">
+                        <a href="{{ post_item.get_absolute_url }}">
                             <i class="material-icons  ">mode_comment</i>
                         </a>
                     </div>
+                    {% if favorited is True %}
 
+                    <div class="media-right">
+                        <a href="{% url 'postfavorite' post_item.id %}">
+                            <i class="material-icons ">turned_in</i>
+
+                        </a>
+                    </div>
+                    {% else %}
+                    <div class="media-right">
+                        <a href="{% url 'postfavorite' post_item.id %}">
+                            <i class="material-icons">turned_in_not</i>
+                            
+                        </a>
+                    </div>
+                    {% endif %}
 
                 </div>
                 <div class="media-content">
-                        <strong><p>{{ post_item.likes }} Likes</p></strong> </br>
-                        <a href="{% url 'profile' post_item.user %}"><p class="subtitle is-6">
-                            <b>{{ post_item.user.username }}</b></p></a>
-                    </div>
+                    <strong><p>{{ post_item.likes }} Likes</p></strong> </br>
+                    <a href="{% url 'profile' post_item.user %}"><p class="subtitle is-6">
+                        <b>{{ post_item.user.username }}</b></p></a>
+                </div>
 
                 <div class="content">
                     {{ post_item.caption }}

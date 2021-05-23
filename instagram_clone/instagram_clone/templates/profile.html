@@ -18,23 +18,51 @@
 
             <div class="media-content">
                 <div class="content">
-                    <h1 class="title  is-1">{% if profile.first_name %}{{ profile.first_name }}{{ profile.last_name }}
-                        {% endif %}
-                    </h1>
-                    <h2 class="subtitle  is-3">@{{ profile.user }}</h2>
+
+                    <p class="subtitle  is-2 " style="display: inline-block;">{{ profile.user }}</p>
                     {% if user.is_authenticated and user != profile.user %}
-                    <div>
-                        {% if follow_status == True %}
-                        <a href="{% url 'follow' profile.user 0 %}" class="button is-danger">UnFollow</a>
-                        {% else %}
-                        <a href="{% url 'follow' profile.user 1 %}" class="button is-info">Follow</a>
-                        {% endif %}
+
+                    {% if follow_status == True %}
+                    <a href="{% url 'follow' profile.user 0 %}" class="button is-danger media-right"
+                       style="margin-top: 10px;">UnFollow</a>
+                    {% else %}
+                    <a href="{% url 'follow' profile.user 1 %}" class="button is-info media-right"
+                       style="margin-top: 10px;">Follow</a>
+                    {% endif %}
+
+                    {% endif %}
+                    {% if user.is_authenticated and user == profile.user %}
+                    <a href="{% url 'edit-profile' %}" class="button media-right" style="margin-top: 10px;">edit
+                        profile</a>
+                    {% endif %}
+                    {% if user.is_authenticated and user == profile.user %}
+                    <div class="navbar-item has-dropdown is-hoverable media-right" style="display: inline-block;">
+                        <a class="navbar-link">
+                            <i class="material-icons">settings</i>
+                        </a>
+
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item">
+                                Change password
+                            </a>
+                            <a class="navbar-item" href="{% url 'show-notifications' %}">
+                                Notifications
+                            </a>
+                            <a class="navbar-item">
+                                Report an issue
+                            </a>
+                            <hr class="navbar-divider">
+                            <a href="{% url 'logout' %}" class="navbar-item">
+                                Log out
+                            </a>
+                        </div>
                     </div>
                     {% endif %}
                 </div>
 
 
                 <nav class="level is-mobile">
+
                     <div class="level-item has-text-centered">
                         <div>
                             <p class="heading">Posts</p>
@@ -55,11 +83,13 @@
                     </div>
 
                 </nav>
+                <h4 class="title  is-4" style="margin-top: 30px; margin-bottom: 0px;">{% if profile.first_name %}
+                    {{profile.first_name }} {{ profile.last_name }}
+                    {% endif %}
+                </h4>
                 <p>{% if profile.profile_info %}{{ profile.profile_info }}{% endif %}</p>
 
-                {% if user.is_authenticated and user == profile.user %}
-                <a href="{% url 'edit-profile' %}" class="button">edit profile</a>
-                {% endif %}
+
             </div>
         </article>
 
@@ -72,7 +102,8 @@
                         </li>
 
                         <li class="{% if url_name == 'profilefavorites' %}is-active{% endif %}">
-                            <a href="{% url 'profilefavorites' profile.user %}"><i class="material-icons">turned_in_not</i>Saved</a>
+                            <a href="{% url 'profilefavorites' profile.user %}"><i
+                                    class="material-icons">turned_in_not</i>Saved</a>
                         </li>
                     </ul>
                 </div>

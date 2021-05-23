@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
+    <title>Instagram</title>
+    <link rel="icon" href="../../media/instagram.png" type="image/gif" sizes="20x20">
     <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -40,7 +41,7 @@
             </a>
             <!--usersearch-->
             <a href="{% url 'inbox' %}" class="navbar-item">
-                <i class="material-icons">inbox</i>
+                <i class="material-icons">maps_ugc</i>
                 {% if directs_count %}
                 <span class="badge">{{ directs_count }}</span>
                 {% endif %}
@@ -53,27 +54,7 @@
                 <i class="material-icons">add_box</i>
             </a>
 
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                    <i class="material-icons">settings</i>
-                </a>
 
-                <div class="navbar-dropdown">
-                    <a class="navbar-item">
-                        Change password
-                    </a>
-                    <a class="navbar-item">
-                        Contact
-                    </a>
-                    <a class="navbar-item">
-                        Report an issue
-                    </a>
-                    <hr class="navbar-divider">
-                    <a href="{% url 'logout' %}" class="navbar-item">
-                        Log out
-                    </a>
-                </div>
-            </div>
         </div>
 
 

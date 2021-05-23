@@ -2,7 +2,7 @@
 
 
 {% load static %}
-
+{% load humanize %}
 {% block content %}
 <div class="columns is-mobile">
     <div class="column is-one-quarter">
@@ -18,21 +18,21 @@
                     <div class="box">
                         <article class="media">
                             <div class="media-left">
-                                <figure class="image is-64x64">
+                                <figure class="image" style="width: 64px ; height: 64px">
                                     {% if message.user.profile.picture %}
-                                    <img src="{{ message.user.profile.picture.url }}" alt="Placeholder image">
+                                    <img class="is-rounded" src="{{ message.user.profile.picture.url }}"
+                                         alt="Placeholder image">
                                     {% else %}
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                                    <img class="is-rounded" src="https://bulma.io/images/placeholders/96x96.png"
+                                         alt="Placeholder image">
                                     {% endif %}
                                 </figure>
                             </div>
                             <div class="media-content">
                                 <div class="content">
                                     <p>
-                                        <strong>
-                                            {{ message.user.profile.first_name }} {{ message.user.profile.last_name }}
-                                        </strong>
-                                        <small>@{{message.user.username}}</small>
+
+                                    <p class="subtitle is-4">{{message.user.username}}</p>
 
                                     </p>
                                 </div>
@@ -60,16 +60,13 @@
                     <div class="media-left">
 
                     </div>
-                    <div class="media-content">
+                    <div class="media-content is-rounded">
                         <div class="content">
-                            <p>
-                                <strong>{{ direct.sender.profile.first_name }}
-                                    {{ direct.sender.profile.last_name }}</strong>
-                                <small>@{{ direct.sender.username }}</small>
-                                on :
-                                <small>{{ direct.date|date:'N d G:i' }}</small>
-                            </p>
-                            {{ direct.body }}
+                            <p class="subtitle" style="font-size: 20px;">
+                                <b>{{ direct.sender.username }}</b></p>
+
+                            <p>{{ direct.body }}</p>
+                            <small class="has-text-grey">{{ direct.date|naturaltime }}</small>
                         </div>
 
                     </div>
@@ -82,8 +79,8 @@
             {% csrf_token %}
             <article class="media">
                 <figure class="media-left">
-                    <p class="image is-64x64">
-                        <img src="https://versions.bulma.io/0.7.0/images/placeholders/128x128.png">
+                    <p class="image" style="width: 64px ; height: 64px">
+                        <img class="is-rounded" src="https://versions.bulma.io/0.7.0/images/placeholders/128x128.png">
                     </p>
                 </figure>
                 <div class="media-content">

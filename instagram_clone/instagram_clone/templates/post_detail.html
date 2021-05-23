@@ -17,10 +17,10 @@
             <div class="card-content">
                 <div class="media">
 
-                    <div class="media-right">
+                    <div class="">
                         <a href="{% url 'postlike' post.id %}">
                             <i class="material-icons  has-text-danger">favorite</i>
-                            <p>{{ post.likes }} Likes</p>
+
                         </a>
                     </div>
                     {% if favorited is True %}
@@ -43,7 +43,7 @@
 
                 <div class="media-content">
                     <div class="media-content">
-
+                        <strong><p>{{ post.likes }} Likes</p></strong> </br>
                         <a href="{% url 'profile' post.user %}"><p class="subtitle is-6">
                             <b>{{ post.user.username }}</b></p></a>
                     </div>

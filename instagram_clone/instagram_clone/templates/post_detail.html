@@ -46,15 +46,15 @@
 
                     <div class="media-right">
                         <a href="{% url 'postfavorite' post.id %}">
-                            <i class="material-icons has-text-danger">save_alt</i>
-                            <p>saved</p>
+                            <i class="material-icons ">turned_in</i>
+
                         </a>
                     </div>
                     {% else %}
                     <div class="media-right">
                         <a href="{% url 'postfavorite' post.id %}">
-                            <i class="material-icons">save_alt</i>
-                            <p>save</p>
+                            <i class="material-icons">turned_in_not</i>
+
                         </a>
                     </div>
                     {% endif %}

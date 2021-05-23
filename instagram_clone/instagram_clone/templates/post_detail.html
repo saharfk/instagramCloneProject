@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="columns is-mobile is-centered">
-    <div class="column">
+    <div class="column is-four-fifths">
 
         <div class="card">
             <div class="card-image">
@@ -17,24 +17,24 @@
             <div class="card-content">
                 <div class="media">
 
-                    <div class="">
+                    <div>
                         <a href="{% url 'postlike' post.id %}">
-                            <i class="material-icons  has-text-danger">favorite</i>
+                            <i class="material-icons  has-text-danger" style="font-size: 40px;">favorite</i>
 
                         </a>
                     </div>
                     {% if favorited is True %}
 
-                    <div class="media-right">
+                    <div class="media-right ">
                         <a href="{% url 'postfavorite' post.id %}">
-                            <i class="material-icons ">turned_in</i>
+                            <i class="material-icons " style="color:black; font-size: 40px;">turned_in</i>
 
                         </a>
                     </div>
                     {% else %}
                     <div class="media-right">
                         <a href="{% url 'postfavorite' post.id %}">
-                            <i class="material-icons">turned_in_not</i>
+                            <i class="material-icons "  style="color:black ; font-size: 40px;">turned_in_not</i>
 
                         </a>
                     </div>
@@ -82,7 +82,7 @@
                             {{ comment.body }}
                             <br>
                             <strong>
-                                <small>{{ comment.date|naturaltime }}</small>
+                                <small class="has-text-grey">{{ comment.date|naturaltime }}</small>
                             </strong>
                         </p>
                     </div>

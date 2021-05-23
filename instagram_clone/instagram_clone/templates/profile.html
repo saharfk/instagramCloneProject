@@ -3,95 +3,102 @@
 {% load static %}
 
 {% block content %}
-<article class="media">
-    <div class="media-left">
-        <figure class="image is-256x256">
-            {% if profile.picture %}
-            <img class="is-rounded" src="{{ profile.picture.url }}">
-            {% else %}
-            <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png">
-            {% endif %}
-        </figure>
-    </div>
+<div class="columns is-mobile is-centered">
+    <div class="column is-four-fifths">
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-256x256" style="width: 256px ; height: 256px">
+                    {% if profile.picture %}
+                    <img class="is-rounded" src="{{ profile.picture.url }}">
+                    {% else %}
+                    <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png">
+                    {% endif %}
+                </figure>
+            </div>
 
-    <div class="media-content">
-        <div class="content">
-            <h1 class="title  is-1">{% if profile.first_name %}{{ profile.first_name }}{{ profile.last_name }}
+            <div class="media-content">
+                <div class="content">
+                    <h1 class="title  is-1">{% if profile.first_name %}{{ profile.first_name }}{{ profile.last_name }}
+                        {% endif %}
+                    </h1>
+                    <h2 class="subtitle  is-3">@{{ profile.user }}</h2>
+                    {% if user.is_authenticated and user != profile.user %}
+                    <div>
+                        {% if follow_status == True %}
+                        <a href="{% url 'follow' profile.user 0 %}" class="button is-danger">UnFollow</a>
+                        {% else %}
+                        <a href="{% url 'follow' profile.user 1 %}" class="button is-info">Follow</a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+
+
+                <nav class="level is-mobile">
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Posts</p>
+                            <p class="title">{{ posts_count }}</p>
+                        </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Following</p>
+                            <p class="title">{{ following_count }}</p>
+                        </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Followers</p>
+                            <p class="title">{{ followers_count }}</p>
+                        </div>
+                    </div>
+
+                </nav>
+                <p>{% if profile.profile_info %}{{ profile.profile_info }}{% endif %}</p>
+
+                {% if user.is_authenticated and user == profile.user %}
+                <a href="{% url 'edit-profile' %}" class="button">edit profile</a>
                 {% endif %}
-            </h1>
-            <h2 class="subtitle  is-3">@{{ profile.user }}</h2>
-            {% if user.is_authenticated and user != profile.user %}
-            <div>
-                {% if follow_status == True %}
-                <a href="{% url 'follow' profile.user 0 %}" class="button is-danger">UnFollow</a>
-                {% else %}
-                <a href="{% url 'follow' profile.user 1 %}" class="button is-info">Follow</a>
-                {% endif %}
             </div>
-            {% endif %}
-        </div>
+        </article>
 
+        <section class="section">
+            <div class="container">
+                <div class="tabs is-centered">
+                    <ul>
+                        <li class="{% if url_name == 'profile' %}is-active{% endif %}">
+                            <a href="{% url 'profile' profile.user %}"><i class="material-icons">dashboard</i>Posts</a>
+                        </li>
 
-        <nav class="level is-mobile">
-            <div class="level-item has-text-centered">
-                <div>
-                    <p class="heading">Posts</p>
-                    <p class="title">{{ posts_count }}</p>
+                        <li class="{% if url_name == 'profilefavorites' %}is-active{% endif %}">
+                            <a href="{% url 'profilefavorites' profile.user %}"><i class="material-icons">turned_in_not</i>Saved</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="columns is-mobile is-multiline">
+
+                    {% for post in posts %}
+                    <div class="column is-one-third ">
+                        <div class="box">
+                            <figure class="image is-256x256">
+                                <a href="{{ post.get_absolute_url }}"> <img
+                                        src="{{ post.picture.url }}"
+                                        style="width: 256px !important ; height: 256px !important ; display: block;margin-left: auto;margin-right: auto;width: 50%;"
+                                        alt="Image"></a>
+                            </figure>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <h2 class="title is-3">no posts here! upload post</h2>
+                    {% endfor %}
+
                 </div>
             </div>
-            <div class="level-item has-text-centered">
-                <div>
-                    <p class="heading">Following</p>
-                    <p class="title">{{ following_count }}</p>
-                </div>
-            </div>
-            <div class="level-item has-text-centered">
-                <div>
-                    <p class="heading">Followers</p>
-                    <p class="title">{{ followers_count }}</p>
-                </div>
-            </div>
 
-        </nav>
-        <p>{% if profile.profile_info %}{{ profile.profile_info }}{% endif %}</p>
-
-        {% if user.is_authenticated and user == profile.user %}
-        <a href="{% url 'edit-profile' %}" class="button">edit profile</a>
-        {% endif %}
+        </section>
     </div>
-</article>
-
-<section class="section">
-    <div class="container">
-        <div class="tabs is-centered">
-            <ul>
-                <li class="{% if url_name == 'profile' %}is-active{% endif %}">
-                    <a href="{% url 'profile' profile.user %}"><i class="material-icons">dashboard</i>Posts</a>
-                </li>
-
-                <li class="{% if url_name == 'profilefavorites' %}is-active{% endif %}">
-                    <a href="{% url 'profilefavorites' profile.user %}"><i class="material-icons">save_alt</i>Saved</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="columns is-mobile is-multiline">
-
-            {% for post in posts %}
-            <div class="column is-one-quarter">
-                <div class="box">
-                    <figure class="image is-256x256">
-                        <a href="{{ post.get_absolute_url }}"> <img src="{{ post.picture.url }}" alt="Image"></a>
-                    </figure>
-                </div>
-            </div>
-            {% empty %}
-            <h2 class="title is-3">no posts here! upload post</h2>
-            {% endfor %}
-
-        </div>
-    </div>
-
-</section>
+</div>
 {% endblock %}
 

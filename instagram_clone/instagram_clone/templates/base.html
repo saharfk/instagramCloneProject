@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Instagram</title>
-    <link rel="icon" href="../../media/instagram.png" type="image/gif" sizes="20x20">
+    <link rel="icon" href="{% static 'img/instagram_original.png' %}" type="image/gif" sizes="20x20">
     <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -47,7 +47,7 @@
                 {% endif %}
             </a>
             <a href="{% url 'profile' request.user %}" class="navbar-item">
-                <i class="material-icons">face</i>
+                <i class="material-icons">account_circle</i>
             </a>
 
             <a href="{% url 'newpost' %}" class="navbar-item">

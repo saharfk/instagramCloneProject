@@ -38,7 +38,7 @@
                     {% if user.is_authenticated and user == profile.user %}
                     <div class="navbar-item has-dropdown is-hoverable media-right" style="display: inline-block;">
                         <a class="navbar-link">
-                            <i class="material-icons">settings</i>
+                            <i class="material-icons" style="color: black;">settings</i>
                         </a>
 
                         <div class="navbar-dropdown">
@@ -98,7 +98,7 @@
                 <div class="tabs is-centered">
                     <ul>
                         <li class="{% if url_name == 'profile' %}is-active{% endif %}">
-                            <a href="{% url 'profile' profile.user %}"><i class="material-icons">dashboard</i>Posts</a>
+                            <a href="{% url 'profile' profile.user %}"><i class="material-icons">grid_view</i>Posts</a>
                         </li>
 
                         <li class="{% if url_name == 'profilefavorites' %}is-active{% endif %}">

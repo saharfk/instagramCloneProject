@@ -97,7 +97,7 @@ def UserSearch(request):
 @login_required
 def NewConversation(request, username):
     from_user = request.user
-    body = ''
+    body = 'A NEW CONVERSATION HAS STARTED'
     try:
         to_user = User.objects.get(username=username)
     except Exception as e:
@@ -118,7 +118,7 @@ def checkDirects(request):
 @login_required
 def reportIssue(request):
     from_user = request.user
-    body = ''
+    body = 'A NEW CONVERSATION HAS STARTED'
     if from_user != 'admin':
         Message.send_message(from_user, 'admin', body)
     return redirect('inbox')

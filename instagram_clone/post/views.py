@@ -140,6 +140,7 @@ def like(requst, post_id):
 
     return HttpResponseRedirect(reverse('postdetails', args=[post_id]))
 
+
 @login_required
 def likeIn(requst, post_id):
     user = requst.user
@@ -189,3 +190,28 @@ def favoriteIn(requst, post_id):
         profile.favorites.add(post)
 
     return redirect('index')
+
+
+@login_required
+def explore(request):
+    users = Profile.objects.all()
+    posts = Post.objects.all()
+
+    group_ids = []
+    group = []
+    for post in posts:
+        group_ids.append(post.id)
+
+    for user in users:
+        group.append(user.id)
+
+    post_items = Post.objects.filter(id__in=group_ids).all().order_by('-posted')
+    user_items = Profile.objects.filter(id__in=group_ids).all()
+    template = loader.get_template('explore.html')
+
+    context = {
+        'post_items': post_items,
+        'user_items': user_items,
+    }
+
+    return HttpResponse(template.render(context, request))

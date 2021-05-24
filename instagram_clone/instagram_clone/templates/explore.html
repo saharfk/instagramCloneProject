@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="columns is-mobile is-centered">
+    <div class="column is-four-fifths">
+        <section class="section">
+            <div class="container">
+                <div class="tabs is-centered">
+                    <ul>
+                        <li class="{% if url_name == 'profile' %}is-active{% endif %}">
+                            <a href="{% url 'profile' profile.user %}"><i class="material-icons">grid_view</i>Posts</a>
+                        </li>
+
+                        <li class="{% if url_name == 'profilefavorites' %}is-active{% endif %}">
+                            <a href="{% url 'profilefavorites' profile.user %}"><i
+                                    class="material-icons">turned_in_not</i>Saved</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="columns is-mobile is-multiline">
+                    {% for user in user_item %}
+                    {% for post in post_item %}
+                    <div class="column is-one-third ">
+                        <div class="box">
+                            <figure class="image is-256x256">
+                                <a href="{{ post.get_absolute_url }}"> <img
+                                        src="{{ post.picture.url }}"
+                                        style="width: 256px !important ; height: 256px !important ; display: block;margin-left: auto;margin-right: auto;width: 50%;"
+                                        alt="Image"></a>
+                            </figure>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p style="alignment: center !important;">
+                    <h2 class="title is-3">There is nothing to show</h2></p>
+                    {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+
+        </section>
+    </div>
+</div>
+{% endblock %}

@@ -4,19 +4,19 @@
 
 {% block content %}
 
-<div class="columns is-mobile">
-    <div class="column ">
+<div class="columns is-mobile is-centered">
+    <div class="column is-offset-one-quarter">
         <div class="field is-grouped " class="inline">
             <form style="  display: flex;
                           flex-flow: row wrap;
                           align-items: center;">
-                <p class="control is-expanded">
-                    <input class="input is-large" name="q" type="text" placeholder="Search users..."
+                <p class="control">
+                    <input class="input is-medium" name="q" type="text" placeholder="Search users..."
                            value="{{ request.GET.q }}">
                 </p>
 
                 <p class="control">
-                    <button type="submit" class="button">Search</button>
+                    <button type="submit" class="button media-right is-medium">Search</button>
                 </p>
             </form>
         </div>
@@ -25,7 +25,7 @@
     </div>
 </div>
 
-<div class="column is-one-fifth is-centered">
+<div class="column is-narrow is-half">
 
     {% for user in users %}
     <div class="box">
@@ -33,17 +33,30 @@
             <div class="media-left">
                 <figure class="image is-64x64">
                     {% if user.profile.picture %}
-                    <img src="{{ user.profile.picture.url }}" alt="Placeholder image">
+                    <a href="{% url 'profile' user.username %}" style="color: black">
+                        <img class="is-rounded " src="{{ user.profile.picture.url }}"
+                             alt="Placeholder image"></a>
                     {% else %}
-                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                    <a href="{% url 'profile' user.username %}" style="color: black">
+                        <img class="is-rounded " src="https://bulma.io/images/placeholders/96x96.png"
+                             alt="Placeholder image"></a>
                     {% endif %}
                 </figure>
             </div>
             <div class="media-content">
                 <div class="content">
                     <p>
-                        <strong>{{ user.profile.first_name }} {{ user.profile.last_name }}</strong>
-                        <small>@{{ user.username }}</small>
+                        {% if user.profile.first_name %}
+                        <a href="{% url 'profile' user.username %}" style="color: black"><strong>
+                            {{ user.profile.first_name }} {{ user.profile.last_name }} /
+                        </strong></a>
+                        {% endif %}
+
+                        <a href="{% url 'profile' user.username %}" style="color: black">
+                            <small>
+                               <b>@{{ user.username }}</b>
+                            </small>
+                        </a>
                     </p>
                     <a href="{% url 'newconversation' user.username %}" class="button is-info">Send a message!</a>
                 </div>

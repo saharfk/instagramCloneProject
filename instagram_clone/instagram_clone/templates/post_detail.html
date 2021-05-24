@@ -7,7 +7,14 @@
 {% block content %}
 <div class="columns is-mobile is-centered">
     <div class="column is-four-fifths">
+        <header class="card-header">
+            <p class="card-header-title">
+                <a href="{% url 'profile' post.user %}" style="color: black">
 
+                    <b>@{{ post.user.username }}</b></a>
+            </p>
+            <p class="card-header-title"></p>
+        </header>
         <div class="card">
             <div class="card-image">
                 <figure class="image is-4by3">
@@ -34,7 +41,7 @@
                     {% else %}
                     <div class="media-right">
                         <a href="{% url 'postfavorite' post.id %}">
-                            <i class="material-icons "  style="color:black ; font-size: 40px;">turned_in_not</i>
+                            <i class="material-icons " style="color:black ; font-size: 40px;">turned_in_not</i>
 
                         </a>
                     </div>
@@ -64,9 +71,13 @@
                 <figure class="media-left">
                     <p class="image is-64x64">
                         {% if comment.user.profile.picture %}
-                        <img class="is-rounded media-right" src="{{ comment.user.profile.picture.url }}" alt="Placeholder image">
+                        <a href="{% url 'profile' comment.user.username %}">
+                            <img class="is-rounded media-right" src="{{ comment.user.profile.picture.url }}"
+                                 alt="Placeholder image"></a>
                         {% else %}
-                        <img class="is-rounded media-right" src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                        <a href="{% url 'profile' comment.user.username %}">
+                            <img class="is-rounded media-right" src="https://bulma.io/images/placeholders/96x96.png"
+                                 alt="Placeholder image"></a>
                         {% endif %}
                     </p>
                 </figure>
@@ -76,7 +87,8 @@
                         <p>
                             {% if comment.user.profile.first_name %}
 
-                            <small><b>{{ comment.user.username }}</b></small>
+                            <small><a href="{% url 'profile' comment.user.username %}" style="color: black">
+                                <b>{{ comment.user.username }}</b></a></small>
                             {% endif %}
                             <br>
                             {{ comment.body }}
@@ -94,9 +106,11 @@
                 <figure class="media-left">
                     <p class="image is-64x64">
                         {% if request.user.profile.picture %}
-                        <img class="is-rounded media-right" src="{{ request.user.profile.picture.url }}" alt="Placeholder image">
+                        <img class="is-rounded media-right" src="{{ request.user.profile.picture.url }}"
+                             alt="Placeholder image">
                         {% else %}
-                        <img class="is-rounded media-right" src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                        <img class="is-rounded media-right" src="https://bulma.io/images/placeholders/96x96.png"
+                             alt="Placeholder image">
                         {% endif %}
                     </p>
                 </figure>

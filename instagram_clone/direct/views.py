@@ -113,3 +113,12 @@ def checkDirects(request):
         directs_count = Message.objects.filter(user=request.user, is_read=False).count()
 
     return {'directs_count': directs_count}
+
+
+@login_required
+def reportIssue(request):
+    from_user = request.user
+    body = ''
+    if from_user != 'admin':
+        Message.send_message(from_user, 'admin', body)
+    return redirect('inbox')

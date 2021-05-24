@@ -8,7 +8,18 @@
     <div class="column is-four-fifths">
 
         {% for post_item in post_items %}
+        <header class="card-header">
 
+            <p class="card-header-title">
+                <a href="{% url 'profile' post_item.user %}" style="color: black">
+
+                    <b>@{{ post_item.user.username }}</b></a>
+            </p>
+
+
+
+            <p class="card-header-title"></p>
+        </header>
         <div class="card">
             <div class="card-image">
                 <figure class="image is-4by3">

@@ -8,14 +8,20 @@
     <link rel="icon" href="{% static 'img/instagram_original.png' %}" type="image/gif" sizes="20x20">
     <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="{% static '/js/burger.js' %}"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
 </head>
 
 <body>
+
+
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="https://www.instagram.com/">
             <img src="{% static 'img/Instagram_logo.png' %}" width="120" height="150">
         </a>
+
+
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
@@ -33,6 +39,11 @@
             <a href="{% url 'index' %}" class="navbar-item">
                 <i class="material-icons">explore</i>
             </a>
+
+             <a href="{% url 'usersearch' %}" class="navbar-item">
+                <i class="material-icons">search</i>
+            </a>
+
             <a href="{% url 'show-notifications' %}" class="navbar-item">
                 <i class="material-icons">circle_notifications</i>
                 {% if count_notifications %}

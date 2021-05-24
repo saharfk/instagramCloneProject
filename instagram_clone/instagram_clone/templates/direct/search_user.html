@@ -5,18 +5,19 @@
 {% block content %}
 
 <div class="columns is-mobile">
-    <div class="column is-offset-one-fifth">
-
-
-        <div class="field has-addons">
-            <form>
-                <div class="control">
+    <div class="column ">
+        <div class="field is-grouped " class="inline">
+            <form style="  display: flex;
+                          flex-flow: row wrap;
+                          align-items: center;">
+                <p class="control is-expanded">
                     <input class="input is-large" name="q" type="text" placeholder="Search users..."
                            value="{{ request.GET.q }}">
-                </div>
-                <div class="control">
-                    <button type="submit" class="button is-success">Search</button>
-                </div>
+                </p>
+
+                <p class="control">
+                    <button type="submit" class="button">Search</button>
+                </p>
             </form>
         </div>
 
@@ -24,7 +25,7 @@
     </div>
 </div>
 
-<div class="column is-one-quarter">
+<div class="column is-one-fifth is-centered">
 
     {% for user in users %}
     <div class="box">

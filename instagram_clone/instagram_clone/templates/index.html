@@ -31,7 +31,7 @@
 
                 <div class="media">
                     <div class="">
-                        <a href="{% url 'postlike' post_item.id %}">
+                        <a href="{% url 'postlikeIn' post_item.id %}">
                             <i class="material-icons  has-text-danger" style="font-size: 35px;">favorite</i>
                         </a>
                     </div>
@@ -43,14 +43,14 @@
                     {% if favorited is True %}
 
                     <div class="media-right">
-                        <a href="{% url 'postfavorite' post_item.id %}">
+                        <a href="{% url 'postfavoriteIn' post_item.id %}">
                             <i class="material-icons " style="color:black; font-size: 35px;">turned_in</i>
 
                         </a>
                     </div>
                     {% else %}
                     <div class="media-right">
-                        <a href="{% url 'postfavorite' post_item.id %}">
+                        <a href="{% url 'postfavoriteIn' post_item.id %}">
                             <i class="material-icons" style="color:black; font-size: 35px;">turned_in_not</i>
 
                         </a>

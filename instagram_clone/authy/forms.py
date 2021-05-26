@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from authy.models import Profile
+from django.forms import TextInput
 
 
 def ForbiddenUsers(value):
@@ -98,3 +99,23 @@ class EditProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('picture', 'first_name', 'last_name', 'location', 'url', 'profile_info')
+        widgets = {
+            'picture': TextInput(attrs={
+                'class': 'form_input',
+                'placeholder': Profile.picture}),
+            'first_name': TextInput(attrs={
+                'class': 'form_input',
+                'placeholder': Profile.first_name}),
+            'last_name': TextInput(attrs={
+                'class': 'form_input',
+                'placeholder': Profile.last_name}),
+            'location': TextInput(attrs={
+                'class': 'form_input',
+                'placeholder': Profile.location}),
+            'url': TextInput(attrs={
+                'class': 'form_input',
+                'placeholder': Profile.url}),
+            'profile_info': TextInput(attrs={
+                'class': 'form_input',
+                'placeholder': Profile.profile_info}),
+        }

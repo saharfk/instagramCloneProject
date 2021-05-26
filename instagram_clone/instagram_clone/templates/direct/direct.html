@@ -14,9 +14,9 @@
             <ul style="overflow-y: scroll; height: 500px" class="menu-list">
                 {% for message in messages %}
                 {% if active_direct == message.user.username %}
-                <a style="background: gray"
+                <a style="background: #B3B3B3"
                    href="{% url 'directs' message.user.username %}">
-                    <div class="box" style="background: gray">
+                    <div class="box" style="background:  #B3B3B3">
                         {% else %}
                         <a href="{% url 'directs' message.user.username %}">
                             <div class="box">
@@ -85,11 +85,6 @@
         <form role="form" method="POST" action="{% url 'send_directs' %}">
             {% csrf_token %}
             <article class="media">
-                <figure class="media-left">
-                    <p class="image" style="width: 64px ; height: 64px">
-                        <img class="is-rounded" src="https://versions.bulma.io/0.7.0/images/placeholders/128x128.png">
-                    </p>
-                </figure>
                 <div class="media-content">
                     <input type="hidden" name="to_user" value="{{ active_direct }}">
                     <div class="field">

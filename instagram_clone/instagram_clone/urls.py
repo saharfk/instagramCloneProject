@@ -18,13 +18,14 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from authy.views import UserProfile, follow
-
+# from post.views import explore
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('post/', include('post.urls')),
                   path('user/', include('authy.urls')),
                   path('direct/', include('direct.urls')),
                   path('notifications/', include('notifications.urls')),
+                  # path('explore/', explore, name='explore'),
                   path('<username>/', UserProfile, name='profile'),
                   path('<username>/saved', UserProfile, name='profilefavorites'),
                   path('<username>/follow/<option>', follow, name='follow'),

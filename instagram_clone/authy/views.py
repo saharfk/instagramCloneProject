@@ -113,7 +113,7 @@ def EditProfile(request):
             profile.save()
             return redirect('index')
     else:
-        form = EditProfileForm()
+        form = EditProfileForm(instance=profile)
 
     context = {
         'form': form,

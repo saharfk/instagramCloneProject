@@ -23,10 +23,19 @@ def index(request):
 
     post_items = Post.objects.filter(id__in=group_ids).all().order_by('-posted')
 
+    favorited = False
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(user=user)
+        # For the color of the favorite button
+
+        if profile.favorites.filter(id__in=group_ids).all().exists():
+            favorited = True
+
     template = loader.get_template('index.html')
 
     context = {
         'post_items': post_items,
+        'favorited': favorited,
     }
 
     return HttpResponse(template.render(context, request))
@@ -178,40 +187,28 @@ def favorite(requst, post_id):
 
 
 @login_required
-def favoriteIn(requst, post_id):
-    user = requst.user
+def favoriteIn(request, post_id):
+    user = request.user
     post = Post.objects.get(id=post_id)
     profile = Profile.objects.get(user=user)
 
     if profile.favorites.filter(id=post_id).exists():
         profile.favorites.remove(post)
 
+
     else:
         profile.favorites.add(post)
 
     return redirect('index')
 
-
-@login_required
-def explore(request):
-    users = Profile.objects.all()
-    posts = Post.objects.all()
-
-    group_ids = []
-    group = []
-    for post in posts:
-        group_ids.append(post.id)
-
-    for user in users:
-        group.append(user.id)
-
-    post_items = Post.objects.filter(id__in=group_ids).all().order_by('-posted')
-    user_items = Profile.objects.filter(id__in=group_ids).all()
-    template = loader.get_template('explore.html')
-
-    context = {
-        'post_items': post_items,
-        'user_items': user_items,
-    }
-
-    return HttpResponse(template.render(context, request))
+# @login_required
+# def explore(request):
+#     users = Profile.objects.all()
+#     posts = Post.objects.all()
+#
+#     context = {
+#         'users': users,
+#         'posts': posts,
+#     }
+#     template = loader.get_template('explore.html')
+#     HttpResponse(template.render(context, request))

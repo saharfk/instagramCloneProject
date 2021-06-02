@@ -36,12 +36,12 @@
                         profile</a>
                     {% endif %}
                     {% if user.is_authenticated and user == profile.user %}
-                    <div class="navbar-item has-dropdown is-hoverable media-right" style="display: inline-block;">
+                    <div class="dropdown is-hoverable media-right" style="display: inline-block;">
                         <a class="navbar-link">
                             <i class="material-icons" style="color: black;">settings</i>
                         </a>
 
-                        <div class="navbar-dropdown">
+                        <div class="dropdown-menu" id="dropdown-menu4" role="menu" style="background: white">
                             <a href="{% url 'change_password' %}" class="navbar-item">
                                 Change password
                             </a>

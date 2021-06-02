@@ -17,7 +17,7 @@
             </div>
 
             <div class="media-content">
-                <div class="content">
+                <div class="content" style="margin-left: 11.5%">
 
                     <p class="subtitle  is-2 " style="display: inline-block;">{{ profile.user }}</p>
                     {% if user.is_authenticated and user != profile.user %}
@@ -36,12 +36,12 @@
                         profile</a>
                     {% endif %}
                     {% if user.is_authenticated and user == profile.user %}
-                    <div class="navbar-item has-dropdown is-hoverable media-right" style="display: inline-block;">
+                    <div class="dropdown is-hoverable media-right" style="display: inline-block;">
                         <a class="navbar-link">
                             <i class="material-icons" style="color: black;">settings</i>
                         </a>
 
-                        <div class="navbar-dropdown">
+                        <div class="dropdown-menu" id="dropdown-menu4" role="menu" style="background: white">
                             <a href="{% url 'change_password' %}" class="navbar-item">
                                 Change password
                             </a>
@@ -83,6 +83,7 @@
                     </div>
 
                 </nav>
+                <div style="margin-left: 11.5%">
                 <h4 class="title  is-4" style="margin-top: 30px; margin-bottom: 0px;">{% if profile.first_name %}
                     {{profile.first_name }} {{ profile.last_name }}
                     {% endif %}
@@ -90,7 +91,7 @@
                 <p>{% if profile.profile_info %}{{ profile.profile_info }}{% endif %}</p>
                 <p>{% if profile.profile_info %}<a href="{{ profile.url }}">{{ profile.url }}</a>{% endif %}</p>
 
-
+                </div>
             </div>
         </article>
 

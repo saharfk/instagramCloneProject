@@ -27,10 +27,10 @@
     </div>
 </div>
 
-<div class="column is-narrow is-half">
+<div class="column is-narrow">
 
     {% for user in users %}
-    <div class="box">
+    <div class="box" style="width: 50% ; margin: 15px auto ; margin-bottom: 30px ;">
         <article class="media">
             <div class="media-left">
                 <figure class="image is-64x64">
@@ -56,7 +56,7 @@
 
                         <a href="{% url 'profile' user.username %}" style="color: black">
                             <small>
-                               <b>@{{ user.username }}</b>
+                                <b>@{{ user.username }}</b>
                             </small>
                         </a>
                     </p>

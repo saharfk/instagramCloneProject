@@ -1,12 +1,12 @@
 # instagram Clone Project
 
 
-this project is [instagrams](https://www.instagram.com/) clone written with [django](https://www.djangoproject.com/).
+this project is [instagrams](https://www.instagram.com/) clone written with **[django](https://www.djangoproject.com/)** and **[Bulma](https://bulma.io/)**.
 
 ## contributors:
 
-- sahar fakhrieh kashan
-- negin banay shahani
+- [sahar fakhrieh kashan](https://github.com/saharfk)
+- [negin banay shahani](https://github.com/negin-shahani)
 
 ## Prerequisites:
 - asgiref==3.3.4

@@ -52,6 +52,7 @@
                                 </article>
                             </div>
                         </a>
+
                         {% endfor %}
             </ul>
         </aside>
@@ -59,7 +60,8 @@
     </div>
 
     <div class="column">
-        <div style="overflow-y: scroll; height: 500px">
+        <div style="overflow-y: scroll; height: 500px;display: flex;
+                flex-direction: column-reverse;">
 
             {% for direct in directs %}
             <div class="box">

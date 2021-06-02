@@ -40,22 +40,6 @@
                         </a>
                     </div>
 
-                    {% if favorited is True %}
-
-                    <div class="media-right">
-                        <a href="{% url 'postfavoriteIn' post_item.id %}">
-                            <i class="material-icons " style="color:black; font-size: 35px;">turned_in</i>
-
-                        </a>
-                    </div>
-                    {% else %}
-                    <div class="media-right">
-                        <a href="{% url 'postfavoriteIn' post_item.id %}">
-                            <i class="material-icons" style="color:black; font-size: 35px;">turned_in_not</i>
-
-                        </a>
-                    </div>
-                    {% endif %}
 
                 </div>
                 <div class="media-content">

@@ -19,7 +19,7 @@ def inbox(request):
     if messages:
         message = messages[0]
         active_direct = message['user'].username
-        directs = Message.objects.filter(user=request.user, recipient=message['user'])
+        directs = Message.objects.filter(user=request.user, recipient=message['user']).order_by('-date')
         directs.update(is_read=True)
         for message in messages:
             if message['user'].username == active_direct:
@@ -41,7 +41,7 @@ def Directs(request, username):
     user = request.user
     messages = Message.get_messages(user=user)
     active_direct = username
-    directs = Message.objects.filter(user=user, recipient__username=username)
+    directs = Message.objects.filter(user=user, recipient__username=username).order_by('-date')
     directs.update(is_read=True)
     for message in messages:
         if message['user'].username == username:

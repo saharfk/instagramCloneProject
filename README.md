@@ -1,7 +1,14 @@
 # instagram Clone Project
 
 
-this project is [instagrams](https://www.instagram.com/) clone written with **[django](https://www.djangoproject.com/)** and **[Bulma](https://bulma.io/)**.
+This project is [instagrams](https://www.instagram.com/) clone written with **[Django](https://www.djangoproject.com/)** and **[Bulma](https://bulma.io/)**.
+
+## Our Website Address :
+**http://saharfk78.pythonanywhere.com/**
+
+## experimental users:
+- Username : negin => Password : negin
+- username : sahar => Password : 123
 
 ## contributors:
 

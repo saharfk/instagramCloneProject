@@ -19,7 +19,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from authy.views import UserProfile, follow
 # from post.views import explore
+from instagram_clone.views import custom_login
+
 urlpatterns = [
+                  path('', custom_login, name='custom_login'),
                   path('admin/', admin.site.urls),
                   path('post/', include('post.urls')),
                   path('user/', include('authy.urls')),

@@ -17,7 +17,7 @@
             </div>
 
             <div class="media-content">
-                <div class="content">
+                <div class="content" style="margin-left: 11.5%">
 
                     <p class="subtitle  is-2 " style="display: inline-block;">{{ profile.user }}</p>
                     {% if user.is_authenticated and user != profile.user %}
@@ -83,6 +83,7 @@
                     </div>
 
                 </nav>
+                <div style="margin-left: 11.5%">
                 <h4 class="title  is-4" style="margin-top: 30px; margin-bottom: 0px;">{% if profile.first_name %}
                     {{profile.first_name }} {{ profile.last_name }}
                     {% endif %}
@@ -90,7 +91,7 @@
                 <p>{% if profile.profile_info %}{{ profile.profile_info }}{% endif %}</p>
                 <p>{% if profile.profile_info %}<a href="{{ profile.url }}">{{ profile.url }}</a>{% endif %}</p>
 
-
+                </div>
             </div>
         </article>
 
